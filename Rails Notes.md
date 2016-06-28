@@ -54,6 +54,49 @@ visit `localhost:3000` by default (port 3000 on `localhost`) and we'll see
 `Hello, world!` rendered on the page.
 
 ## Models
+Models are typically represented as relational database tables: one example of a data model is a `user` data model, which can be represented
+(in a very simplified manner) by the following table:
+
+<center>
+    <table>
+      <tr>
+        <th colspan="2">user</th>
+      </tr>
+      <tr>
+        <td>_id</td>
+        <td>integer</td>
+      </tr>
+      <tr>
+        <td>username</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>string</td>
+      </tr>
+    </table>
+</center>
+
+Since `SQL` databases are commonly used (most likely either MySQL, SQLite3, or
+PostgreSQL), the `_id` part of the row in the table is generated automatically
+by the database management system.
+
+To generate a scaffolded model of `user` above, we can use the Rails
+`generate` command, as follows:
+
+```
+$ rails generate scaffold User username:string email:string
+```
+
+Note that we don't have to specify the `_id` column because that's inserted
+by Rails automatically. In order to actually update the database schema 
+with this new table definition, we need to do a *database migration*. This is
+done by the following Rake command wrapped in a `bundle exec`:
+
+```
+$ bundle exec rake db:migrate
+```
+
 
 
 ## Setting Up Heroku
