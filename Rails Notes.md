@@ -97,7 +97,17 @@ done by the following Rake command wrapped in a `bundle exec`:
 $ bundle exec rake db:migrate
 ```
 
+This updates the databse schema with the new data model.
 
+## REST
+REST is an acronym for REpresentational State Transfer. In the context of
+Rails applications, this means that most application components (such as 
+data models) are modeled as resources that can be created, read, updated,
+and destroyed, also known as CRUD. These operations also correspond to the
+four fundamental HTTP requests: POST, GET, PATCH, DELETE.
+
+For Rails application development, this means that we should structure our
+application using resources that will get CRUDed. 
 
 ## Setting Up Heroku
 Heroku uses PostgreSQL as a database rather than 
