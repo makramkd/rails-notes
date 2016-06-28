@@ -99,6 +99,43 @@ $ bundle exec rake db:migrate
 
 This updates the databse schema with the new data model.
 
+### Data Validation
+Rails gives us the ability to do data validation outside of the database
+with ActiveRecord's `validates` method. Say we have a `Tweet` data model that
+contains two pieces of data: the tweet content (abbreviated to `content`)
+and the ID of the user that tweeted it, we can add a validation rule to 
+make the tweet at most 140 characters long like this:
+
+```ruby
+class Tweet < ActiveRecord::Base
+    validates :content, length: { maximum: 140 }
+end
+```
+
+### Associations between Data Models
+When designing relational database schemas, we used terms such as
+"one-to-many relationship" and the like. Rails allows us to make use of such
+terminology via *associations* between data models. As an example, if we
+have a `User` model and a `Tweet` model, since a user can have many tweets
+(i.e it is a one-to-many relationship), we can write the following in the
+`User` class:
+
+```ruby
+class User < ActiveRecord::Base
+    has_many :tweets
+end
+```
+
+Another example is the following: one tweet has exactly one user as an author,
+so we can say that it *belongs to* a user:
+
+```ruby
+class Tweet < ActiveRecord::Base
+    belongs_to :user
+    ...
+end
+```
+
 ## REST
 REST is an acronym for REpresentational State Transfer. In the context of
 Rails applications, this means that most application components (such as 
@@ -139,4 +176,9 @@ $ heroku keys:add
 $ heroku create          # adds heroku remote and creates domain
 $ git push heroku master # installs rails app on remote
 ```
+Note that if you did any database migrations on your local machine then you
+need to run the migration on Heroku:
 
+```
+$ heroku run rake db:migrate
+```
