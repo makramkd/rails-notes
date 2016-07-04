@@ -146,6 +146,18 @@ four fundamental HTTP requests: POST, GET, PATCH, DELETE.
 For Rails application development, this means that we should structure our
 application using resources that will get CRUDed. 
 
+## Adding Bootstrap
+Adding Bootstrap to Rails involves including the `bootstrap-sass` gem in the
+Gemfile and then run `bundle install`:
+
+```ruby
+source 'https://rubygems.org'
+
+gem 'rails'
+gem 'bootstrap-sass'
+...
+```
+
 ## Setting Up Heroku
 Heroku uses PostgreSQL as a database rather than 
 SQLite or something else so you have to add the following code to the
