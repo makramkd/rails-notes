@@ -158,6 +158,14 @@ gem 'bootstrap-sass'
 ...
 ```
 
+## Migrations
+The result of the `rails g model ...` command is a new ruby file that is
+called a *migration*. A migration provides a way to alter the structure of 
+the database incrementally so that the data model can adapt to changing
+requirements. 
+
+In order to apply the migrations to the database you need to run `bundle exec rake db:migrate`. 
+
 ## Setting Up Heroku
 Heroku uses PostgreSQL as a database rather than 
 SQLite or something else so you have to add the following code to the
