@@ -166,6 +166,31 @@ requirements.
 
 In order to apply the migrations to the database you need to run `bundle exec rake db:migrate`. 
 
+Any kind of migration can be done manually using the following `rails` command:
+
+```
+rails g migration migration_name
+```
+
+You can then fill up the migration Ruby file manually with any changes you 
+have to make. A common change is to add an index to a table column. For 
+example, if you want to add a unique index to the e-mail column in the `user` table,
+you can do the following migration:
+
+```
+rails g migration add_index_to_users_email
+```
+
+And in the migration file:
+
+```ruby
+class AddIndexToUsersEmail < ActiveRecord::Migration
+  def change
+    add_index :users, :email, unique: true
+  end
+end
+```
+
 ## Setting Up Heroku
 Heroku uses PostgreSQL as a database rather than 
 SQLite or something else so you have to add the following code to the
